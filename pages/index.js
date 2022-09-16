@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useReducer } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import dynamic from 'next/dynamic';
@@ -15,6 +16,7 @@ const QrReader = dynamic(() => import('react-qr-reader'), {
 });
 
 export default function Home() {
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const pageAwake = () => {
     forceUpdate();
@@ -28,7 +30,7 @@ export default function Home() {
       window.removeEventListener("keydown", pageAwake);
     }
   }, []);
-  
+
   return (
     <div className={styles.container}>
       <Head>
